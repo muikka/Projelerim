@@ -11,6 +11,8 @@ namespace MvcLearning
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+
+            routes.MapMvcAttributeRoutes();//controllerdaki action fonksiyonu değişse bile o fonksiyon üzerine route tanımlayabilmemizi sağlar
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
