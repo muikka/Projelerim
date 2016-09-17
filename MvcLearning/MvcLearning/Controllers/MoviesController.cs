@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.Mvc;
 using MvcLearning.Models;
+using MvcLearning.ViewModels;
 
 namespace MvcLearning.Controllers
 {
@@ -15,7 +16,19 @@ namespace MvcLearning.Controllers
         {
             var movie = new Movie() {Name = "Shrek!"};
 
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Customer1"},
+                new Customer {Name = "Customer2"}
+            };
+
+            var viewmodel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewmodel);
 
         }
 
