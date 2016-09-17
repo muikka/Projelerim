@@ -14,6 +14,6 @@ namespace MvcLearning.Models
 
         public MembershipType MembershipType { get; set; }
 
-        public bool MembershipTypeId { get; set; }
+        public byte MembershipTypeId { get; set; }
     }
 }
