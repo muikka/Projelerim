@@ -235,9 +235,26 @@
     <Compile Include="Migrations\201609171533316_AddBirtDayToCustomerAndSomeStuff.Designer.cs">
       <DependentUpon>201609171533316_AddBirtDayToCustomerAndSomeStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609171659101_AddSomeStuffToMovieModel.cs" />
+    <Compile Include="Migrations\201609171659101_AddSomeStuffToMovieModel.Designer.cs">
+      <DependentUpon>201609171659101_AddSomeStuffToMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609171703480_AddSomeStuffToMovieModel1.cs" />
+    <Compile Include="Migrations\201609171703480_AddSomeStuffToMovieModel1.Designer.cs">
+      <DependentUpon>201609171703480_AddSomeStuffToMovieModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609171705042_PopulateGenresAndMovies.cs" />
+    <Compile Include="Migrations\201609171705042_PopulateGenresAndMovies.Designer.cs">
+      <DependentUpon>201609171705042_PopulateGenresAndMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609171749164_AddNumberInStokToMovieModel.cs" />
+    <Compile Include="Migrations\201609171749164_AddNumberInStokToMovieModel.Designer.cs">
+      <DependentUpon>201609171749164_AddNumberInStokToMovieModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -311,6 +328,8 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,6 +366,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609171533316_AddBirtDayToCustomerAndSomeStuff.resx">
       <DependentUpon>201609171533316_AddBirtDayToCustomerAndSomeStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609171659101_AddSomeStuffToMovieModel.resx">
+      <DependentUpon>201609171659101_AddSomeStuffToMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609171703480_AddSomeStuffToMovieModel1.resx">
+      <DependentUpon>201609171703480_AddSomeStuffToMovieModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609171705042_PopulateGenresAndMovies.resx">
+      <DependentUpon>201609171705042_PopulateGenresAndMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609171749164_AddNumberInStokToMovieModel.resx">
+      <DependentUpon>201609171749164_AddNumberInStokToMovieModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
