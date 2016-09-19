@@ -54,13 +54,27 @@ namespace MvcLearning.Controllers
 
             var viewModel = new MovieFormViewModel()
             {
-                Movies = movie,
+                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
 
 
             return View("MovieForm",viewModel);
+        }
+
+        public ActionResult New()
+        {
+            var movie=new Movie();
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
         }
 
         public ViewResult Index()
@@ -87,26 +101,47 @@ namespace MvcLearning.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(MovieFormViewModel movieViewModel)
         {
-            if (movieViewModel.Movies.Id == 0)
-                return HttpNotFound();
+            if (!ModelState.IsValid)
+            {
+                
+                var genres = _context.Genres.ToList();
+
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movieViewModel.Movie,
+                    Genres = genres
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
+            if (movieViewModel.Movie.Id == 0)
+            {
+                _context.Movies.Add(movieViewModel.Movie);
+            }
+                
             else
             {
-                var movieInDb = _context.Movies.Single(m => m.Id== movieViewModel.Movies.Id);
+                var movieInDb = _context.Movies.Single(m => m.Id== movieViewModel.Movie.Id);
                 if(movieInDb==null)
                     return HttpNotFound();
                 else
                 {
-                    movieInDb.Name = movieViewModel.Movies.Name;
-                    movieInDb.ReleaseDate = movieViewModel.Movies.ReleaseDate;
-                    movieInDb.GenreId = movieViewModel.Movies.GenreId;
-                    movieInDb.NumberInStok = movieViewModel.Movies.NumberInStok;
+                    movieInDb.Name = movieViewModel.Movie.Name;
+                    movieInDb.ReleaseDate = movieViewModel.Movie.ReleaseDate;
+                    movieInDb.DateAdded = movieViewModel.Movie.DateAdded;
+                    movieInDb.GenreId = movieViewModel.Movie.GenreId;
+                    movieInDb.NumberInStok = movieViewModel.Movie.NumberInStok;
 
                 }
 
-                _context.SaveChanges();
+                
             }
+
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Movies");
         }

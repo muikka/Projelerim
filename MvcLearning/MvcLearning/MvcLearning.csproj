@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201609191205339_AddRequiredFeatureToCustomerMembershipId.Designer.cs">
       <DependentUpon>201609191205339_AddRequiredFeatureToCustomerMembershipId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609191336513_AddValidationAndRequiredToMovieModelAndFormAttribute.cs" />
+    <Compile Include="Migrations\201609191336513_AddValidationAndRequiredToMovieModelAndFormAttribute.Designer.cs">
+      <DependentUpon>201609191336513_AddValidationAndRequiredToMovieModelAndFormAttribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -279,7 +283,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
-    <Compile Include="ViewModels\MovieFormViewModel.cs" />
+    <Compile Include="ViewModels\Movie.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609191205339_AddRequiredFeatureToCustomerMembershipId.resx">
       <DependentUpon>201609191205339_AddRequiredFeatureToCustomerMembershipId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191336513_AddValidationAndRequiredToMovieModelAndFormAttribute.resx">
+      <DependentUpon>201609191336513_AddValidationAndRequiredToMovieModelAndFormAttribute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
