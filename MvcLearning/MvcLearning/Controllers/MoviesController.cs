@@ -47,7 +47,20 @@ namespace MvcLearning.Controllers
 
         public ActionResult Edit(int id)
         {
-            return Content("Id= " + id);
+
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if(movie==null)
+                return HttpNotFound();
+
+            var viewModel = new MovieFormViewModel()
+            {
+                Movies = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+
+
+            return View("MovieForm",viewModel);
         }
 
         public ViewResult Index()
@@ -73,7 +86,29 @@ namespace MvcLearning.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult Save(MovieFormViewModel movieViewModel)
+        {
+            if (movieViewModel.Movies.Id == 0)
+                return HttpNotFound();
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id== movieViewModel.Movies.Id);
+                if(movieInDb==null)
+                    return HttpNotFound();
+                else
+                {
+                    movieInDb.Name = movieViewModel.Movies.Name;
+                    movieInDb.ReleaseDate = movieViewModel.Movies.ReleaseDate;
+                    movieInDb.GenreId = movieViewModel.Movies.GenreId;
+                    movieInDb.NumberInStok = movieViewModel.Movies.NumberInStok;
 
-    
-}
+                }
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Movies");
+        }
+    }
 }
