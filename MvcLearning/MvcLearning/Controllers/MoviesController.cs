@@ -52,9 +52,9 @@ namespace MvcLearning.Controllers
             if(movie==null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel()
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
+                
                 Genres = _context.Genres.ToList()
             };
 
@@ -70,7 +70,6 @@ namespace MvcLearning.Controllers
 
             var viewModel = new MovieFormViewModel
             {
-                Movie = movie,
                 Genres = genres
             };
 
@@ -104,37 +103,50 @@ namespace MvcLearning.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(MovieFormViewModel movieViewModel)
         {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == movieViewModel.Id);
+            if (movie == null)
+                return HttpNotFound();
+            else
+            {
+                movie = new Movie
+                {
+                    Id = movieViewModel.Id,
+                    Name = movieViewModel.Name,
+                    GenreId = movieViewModel.GenreId,
+                    NumberInStok = movieViewModel.NumberInStok,
+                    ReleaseDate = movieViewModel.ReleaseDate
+                };
+            }
+
             if (!ModelState.IsValid)
             {
                 
                 var genres = _context.Genres.ToList();
 
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movieViewModel.Movie,
                     Genres = genres
                 };
 
                 return View("MovieForm", viewModel);
             }
 
-            if (movieViewModel.Movie.Id == 0)
+            if (movieViewModel.Id == 0)
             {
-                _context.Movies.Add(movieViewModel.Movie);
+                _context.Movies.Add(movie);
             }
                 
             else
             {
-                var movieInDb = _context.Movies.Single(m => m.Id== movieViewModel.Movie.Id);
+                var movieInDb = _context.Movies.Single(m => m.Id== movieViewModel.Id);
                 if(movieInDb==null)
                     return HttpNotFound();
                 else
                 {
-                    movieInDb.Name = movieViewModel.Movie.Name;
-                    movieInDb.ReleaseDate = movieViewModel.Movie.ReleaseDate;
-                    movieInDb.DateAdded = movieViewModel.Movie.DateAdded;
-                    movieInDb.GenreId = movieViewModel.Movie.GenreId;
-                    movieInDb.NumberInStok = movieViewModel.Movie.NumberInStok;
+                    movieInDb.Name = movieViewModel.Name;
+                    movieInDb.ReleaseDate = movieViewModel.ReleaseDate;
+                    movieInDb.GenreId = movieViewModel.GenreId;
+                    movieInDb.NumberInStok = movieViewModel.NumberInStok;
 
                 }
 
