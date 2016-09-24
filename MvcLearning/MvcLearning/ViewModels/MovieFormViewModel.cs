@@ -34,7 +34,7 @@ namespace MvcLearning.ViewModels
 
 
 
-        public string Title => (Id != 0) ? "Update Movie" : "New Movie";
+        public string Title => (Id != 0) ? "Filmi Güncelle" : "Yeni Film";
 
         public MovieFormViewModel(Movie movie)
         {
@@ -47,7 +47,7 @@ namespace MvcLearning.ViewModels
 
         public MovieFormViewModel()
         {
-            Id = 0;
+            Id = 0;//Default Constructure Sayesinde Yeni Oluşturulacak Nesnenin Id si Otomatikman 0 Olmuş Olur
         }
     }
 }

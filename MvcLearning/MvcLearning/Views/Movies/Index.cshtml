@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Movies</h2>
-<div class="form-group">
-    <button class="btn btn-primary",@Html.Action("Save","Movies")>Yeni Film</button> 
-</div>
+<h2>Filmler</h2>
+<p>
+    @Html.ActionLink("Yeni Film", "New", "Movies", null, new { @class = "btn btn-primary" })
+</p>
 
 
 <table class="table table-bordered table-hover">
