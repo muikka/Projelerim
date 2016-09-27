@@ -7,7 +7,7 @@ using MvcLearning.Models;
 using MvcLearning.ViewModels;
 
 
-namespace Vidly.Controllers
+namespace MvcLearning.Controllers
 {
     public class CustomersController : Controller
     {
